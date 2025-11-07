@@ -16,7 +16,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh "docker build -t ferrerdecaldas/spring-petclinic:latest ."
+        sh "docker build -t julianferrer6/spring-petclinic:latest ."
       }
     }
 
@@ -25,7 +25,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh "docker push ferrerdecaldas/spring-petclinic:latest"
+          sh "docker push julianferrer6/spring-petclinic:latest"
         }
       }
     }
